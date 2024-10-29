@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Special+Elite&display=swap">
+  <style>
+    body {
+      font-family: 'Special Elite', cursive;
+      background: #f4f4f4;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      max-width: 400px;
+      padding: 20px;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4caf50;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Animal Network Member Login</h1>
+    <form id="loginForm">
+      <label for="username">3 Digit Recognition Code(3DRC):</label>
+      <input type="text" id="username" name="username" maxlength="3" required>
+      <button type="submit" id="loginButton">Login</button>
+    </form>
+  </div>
+  <script>
+    const colors = ["Black", "Grey", "Red", "Blue", "Orange", "White", "Brown", "Pink", "Yellow", "Green", "Purple", "Maroon", "Turquoise", "Cyan", "Navy blue", "Gold", "Tomato", "Teal", "Lime", "Cyan", "Wheat", "Salmon", "Olive", "Aqua", "Violet", "Chocolate", "Azure", "Silver", "Bronze", "Dark blue", "Navy"];
+    const loginButton = document.getElementById("loginButton");
+
+    loginButton.addEventListener("mouseover", function() {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      loginButton.style.backgroundColor = randomColor;
+    });
+
+    loginButton.addEventListener("mouseout", function() {
+      loginButton.style.backgroundColor = "#4caf50";
+    });
+
+    const roleCodes = {
+      "101": "Planning Assistant",
+      "102": "Junior Planner",
+      "103": "Planner",
+      "104": "Senior Planner",
+      "105": "Lead Planner",
+      "106": "Planning Supervisor",
+      "107": "Planning Manager",
+      "108": "Planning Director",
+      "109": "Chief Planner",
+      "110": "Deputy Planning Chief",
+      "111": "Assistant Planning Chief",
+      "112": "Planning Chief",
+      "201": "Administrative Assistant",
+      "202": "Administrative Specialist",
+      "203": "Admin Officer",
+      "204": "Senior Admin Officer",
+      "205": "Admin Supervisor",
+      "206": "Admin Manager",
+      "207": "Admin Director",
+      "208": "Senior Admin Director",
+      "209": "Chief Admin Officer",
+      "210": "Deputy Admin Chief",
+      "211": "Assistant Admin Chief",
+      "212": "Admin Chief",
+      "301": "Investigative Assistant",
+      "302": "Investigator",
+      "303": "Senior Investigator",
+      "304": "Lead Investigator",
+      "305": "Principal Investigator",
+      "306": "Investigation Supervisor",
+      "307": "Investigation Manager",
+      "308": "Investigation Director",
+      "309": "Chief Investigator",
+      "310": "Deputy Investigative Chief",
+      "311": "Assistant Investigative Chief",
+      "312": "Investigative Chief",
+      "401": "Internal Affairs Assistant",
+      "402": "Internal Affairs Agent",
+      "403": "Internal Affairs Specialist",
+      "404": "Senior Internal Affairs Specialist",
+      "405": "Internal Affairs Supervisor",
+      "406": "Internal Affairs Manager",
+      "407": "Internal Affairs Director",
+      "408": "Senior Internal Affairs Director",
+      "409": "Chief Internal Affairs Officer",
+      "410": "Deputy Internal Affairs Chief",
+      "411": "Assistant Internal Affairs Chief",
+      "412": "Internal Affairs Chief",
+      "501": "Court Assistant",
+      "502": "Court Clerk",
+      "503": "Court Officer",
+      "504": "Senior Court Officer",
+      "505": "Court Judge",
+      "506": "Senior Court Judge",
+      "507": "Principal Court Judge",
+      "508": "Court Director",
+      "509": "Chief Judge",
+      "510": "Deputy Court Chief",
+      "511": "Assistant Court Chief",
+      "512": "Court Chief",
+      "601": "Appeals Assistant",
+      "602": "Appeals Officer",
+      "603": "Senior Appeals Officer",
+      "604": "Lead Appeals Officer",
+      "605": "Appeals Supervisor",
+      "606": "Appeals Manager",
+      "607": "Appeals Director",
+      "608": "Senior Appeals Director",
+      "609": "Chief Appeals Officer",
+      "610": "Deputy Appeals Chief",
+      "611": "Assistant Appeals Chief",
+      "612": "Appeals Chief",
+      "701": "Operations Assistant",
+      "702": "Operations Officer",
+      "703": "Senior Operations Officer",
+      "704": "Lead Operations Officer",
+      "705": "Operations Supervisor",
+      "706": "Operations Manager",
+      "707": "Operations Director",
+      "708": "Senior Operations Director",
+      "709": "Chief of Operations",
+      "710": "Deputy Operations Chief",
+      "711": "Assistant Operations Chief",
+      "712": "Operations Chief",
+      "801": "Special Ops Assistant",
+      "802": "Special Ops Agent",
+      "803": "Special Ops Specialist",
+      "804": "Senior Special Ops Specialist",
+      "805": "Special Ops Commander",
+      "806": "Senior Special Ops Commander",
+      "807": "Principal Special Ops Commander",
+      "808": "Special Ops Director",
+      "809": "Chief of Special Ops",
+      "810": "Deputy Special Ops Chief",
+      "811": "Assistant Special Ops Chief",
+      "812": "Special Ops Chief",
+      "901": "Aggression Ops Assistant",
+      "902": "Aggression Ops Officer",
+      "903": "Aggression Ops Specialist",
+      "904": "Senior Aggression Ops Specialist",
+      "905": "Aggression Ops Commander",
+      "906": "Senior Aggression Ops Commander",
+      "907": "Principal Aggression Ops Commander",
+      "908": "Aggression Ops Director",
+      "909": "Chief of Aggression Ops",
+      "910": "Deputy Aggression Ops Chief",
+      "911": "Assistant Aggression Ops Chief",
+      "912": "Aggression Ops Chief",
+      "1001": "Cyber Ops Assistant",
+      "1002": "Cyber Ops Analyst",
+      "1003": "Cyber Ops Specialist",
+      "1004": "Senior Cyber Ops Specialist",
+      "1005": "Cyber Ops Commander",
+      "1006": "Senior Cyber Ops Commander",
+      "1007": "Principal Cyber Ops Commander",
+      "1008": "Cyber Ops Director",
+      "1009": "Chief of Cyber Ops",
+      "1010": "Deputy Cyber Ops Chief",
+      "1011": "Assistant Cyber Ops Chief",
+      "1012": "Cyber Ops Chief",
+      "1101": "Mass Ops Assistant",
+      "1102": "Mass Ops Officer",
+      "1103": "Mass Ops Specialist",
+      "1104": "Senior Mass Ops Specialist",
+      "1105": "Mass Ops Commander",
+      "1106": "Senior Mass Ops Commander",
+      "1107": "Principal Mass Ops Commander",
+      "1108": "Mass Ops Director",
+      "1109": "Chief of Mass Ops",
+      "1110": "Deputy Mass Ops Chief",
+      "1111": "Assistant Mass Ops Chief",
+      "1112": "Mass Ops Chief",
+      "1201": "Intel Ops Assistant",
+      "1202": "Intel Ops Analyst",
+      "1203": "Intel Ops Specialist",
+      "1204": "Senior Intel Ops Specialist",
+      "1205": "Intel Ops Commander",
+      "1206": "Senior Intel Ops Commander",
+      "1207": "Principal Intel Ops Commander",
+      "1208": "Intel Ops Director",
+      "1209": "Chief of Intel Ops",
+      "1210": "Deputy Intel Ops Chief",
+      "1211": "Assistant Intel Ops Chief",
+      "1212": "Intel Ops Chief",
+      "1301": "Deterrent Ops Assistant",
+      "1302": "Deterrent Ops Officer",
+      "1303": "Deterrent Ops Specialist",
+      "1304": "Senior Deterrent Ops Specialist",
+      "1305": "Deterrent Ops Commander",
+      "1306": "Senior Deterrent Ops Commander",
+      "1307": "Principal Deterrent Ops Commander",
+      "1308": "Deterrent Ops Director",
+      "1309": "Chief of Deterrent Ops",
+      "1310": "Deputy Deterrent Ops Chief",
+      "1311": "Assistant Deterrent Ops Chief",
+      "1312": "Deterrent Ops Chief"
+    };
+    
+   const roleRedirects = {
+      "101": "planning_assistant_dashboard.html",
+      "102": "junior_planner_dashboard.html",
+      "103": "planner_dashboard.html",
+      "104": "senior_planner_dashboard.html",
+      //ADD MORE
+    };
+
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent form from submitting
+
+      // Get the 3-digit code from the username field
+      const code = document.getElementById('username').value;
+
+      // Check if the code exists in the roleCodes object
+      if (roleCodes.hasOwnProperty(code)) {
+        const role = roleCodes[code];
+        alert(`Welcome, ${role}! Redirecting to your dashboard...`);
+
+        // Redirect to the appropriate dashboard based on role
+        if (roleRedirects.hasOwnProperty(code)) {
+          window.location.href = roleRedirects[code]; // Redirect to the role's dashboard
+        } else {
+          alert("No dashboard found for this role.");
+        }
+      } else {
+        alert("Invalid role code! Please enter a valid 3-digit code.");
+      }
+    });
+  </script>
+</body>
+</html>
